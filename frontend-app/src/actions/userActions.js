@@ -22,6 +22,9 @@ import {
 	NEW_PASSWORD_FAIL,
 	CLEAR_ERRORS,
 	USER_DETAILS_RESET,
+	USER_UPDATE_PIC_FAIL,
+	USER_UPDATE_PIC_SUCCESS,
+	USER_UPDATE_PIC_REQUEST	
 } from '../constants/userConstants'
 
 export const login = (email, password) => async (dispatch) => {
@@ -179,6 +182,50 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 		})
 	}
 }
+
+// profile pic update
+
+export const uploadProfilePic = (user,files) => async (dispatch) => {
+	console.log("upload method user.file ",files.file.name)
+	console.log("upload method user.id ",user.id)
+	try {
+		dispatch({
+			type: USER_UPDATE_PIC_REQUEST,
+		})
+		const config = {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
+		}
+		const formData = new FormData()
+		formData.append('file',files.file)
+		const { data } = await axios.put(
+			'http://localhost:5000/api/users/upload/' + user.id,
+			formData,
+			config
+		)
+		dispatch({
+			type: USER_UPDATE_PIC_SUCCESS,
+			payload: data,
+		})
+
+		// localStorage.setItem('userInfo', JSON.stringify(data))
+	} catch (error) {
+		const message =
+			error.response && error.response.data.message
+				? error.response.data.message
+				: error.message
+		console.log("error message",message)
+		if (message === 'Not authorized, token failed') {
+			dispatch(logout())
+		}
+		dispatch({
+			type: USER_UPDATE_PIC_FAIL,
+			payload: message,
+		})
+	}
+}
+
 
 export const clearErrors = () => async (dispatch) => {
 	dispatch({

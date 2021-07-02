@@ -131,6 +131,10 @@ const UsersSchema = new schema({
     // addresses: {
     //     type: [AddressSchema]
     // },
+    photo: {
+        type: String,
+        default: 'no-photo.jpg',
+    },
     phone: {
         type: Number,
         max: 9999999999,

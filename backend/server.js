@@ -4,6 +4,7 @@
 // import colors from 'colors'
 
 const express = require('express')
+const cors = require('cors')
 require('dotenv').config()
 // import dotenv from 'dotenv'
 const colors = require('colors')
@@ -21,6 +22,7 @@ const { errorHandler, notFound } = require('./middleware/errorMiddleware.js')
 // dotenv.config()
 connectDB()
 const app = express()
+app.use(cors())
 app.use(express.json())
 
 

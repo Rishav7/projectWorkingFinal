@@ -221,7 +221,7 @@ const resetPassword = asyncHandler(async (req, res) => {
 module.exports = {
 	authUser,
 	registerUser,
-	getUserProfile,
+	getUserProfile,	
 	updateUserProfile,
 	uploadProfilePic,
 	forgotPassword,
