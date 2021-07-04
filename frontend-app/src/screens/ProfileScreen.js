@@ -5,9 +5,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 
-import { getUserDetails, updateUserProfile,uploadProfilePic, } from '../actions/userActions'
+import {
+	getUserDetails,
+	updateUserProfile,
+	uploadProfilePic,
+} from '../actions/userActions'
 
-import { USER_UPDATE_PROFILE_RESET,USER_UPDATE_PIC_RESET} from '../constants/userConstants'
+import {
+	USER_UPDATE_PROFILE_RESET,
+	USER_UPDATE_PIC_RESET,
+} from '../constants/userConstants'
 
 const ProfileScreen = ({ history }) => {
 	const [name, setName] = useState('')
@@ -38,8 +45,10 @@ const ProfileScreen = ({ history }) => {
 	const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
 	const { success } = userUpdateProfile
 
-	const userUpdateProfilePic = useSelector((state) => state.userUpdateProfilePic)
-	const {pic_success} = userUpdateProfilePic
+	const userUpdateProfilePic = useSelector(
+		(state) => state.userUpdateProfilePic
+	)
+	const { pic_success } = userUpdateProfilePic
 
 	useEffect(() => {
 		if (!userInfo) {
@@ -54,11 +63,11 @@ const ProfileScreen = ({ history }) => {
 				setPhoto(user.photo)
 				setPhone(user.phone)
 			}
-			if(pic_success){				
+			if (pic_success) {
 				dispatch({ type: USER_UPDATE_PIC_RESET })
 			}
 		}
-	}, [dispatch, history, userInfo, user, success,pic_success])
+	}, [dispatch, history, userInfo, user, success, pic_success])
 
 	const submitHandler = (e) => {
 		e.preventDefault()
@@ -82,9 +91,10 @@ const ProfileScreen = ({ history }) => {
 
 	const submitHandlerPic = (e) => {
 		e.preventDefault()
-		console.log("selected file ",selectedFile)
+		console.log('selected file ', selectedFile)
 
-		dispatch(uploadProfilePic({ id: user._id}, {file:selectedFile }))
+		dispatch(uploadProfilePic({ id: user._id }, { file: selectedFile }))
+		window.location.reload()
 
 		console.log('clicked')
 	}
@@ -93,7 +103,7 @@ const ProfileScreen = ({ history }) => {
 	console.log(photo)
 	return (
 		<div>
-		<Row>
+			<Row>
 				<Col md={3}>
 					<Form onSubmit={submitHandlerPic}>
 						<Form.Group controlId='image'>
@@ -171,6 +181,24 @@ const ProfileScreen = ({ history }) => {
 									</Button>
 								</Form.Group>
 								<br />
+								<Form.Group controlId='phone'>
+									<Form.Label>Mobile No.</Form.Label>
+									<Form.Control
+										type='phone'
+										placeholder='Enter phone no'
+										value={phone}
+										disabled={phone_edit}
+										onChange={(e) => setPhone(e.target.value)}
+									></Form.Control>
+									<Button
+										type='button'
+										variant='primary'
+										size='sm'
+										onClick={(e) => editPhone(false)}
+									>
+										Edit Phone no
+									</Button>
+								</Form.Group>
 								<Form.Group controlId='password'>
 									<Form.Label>Password</Form.Label>
 									<Form.Control
@@ -182,6 +210,7 @@ const ProfileScreen = ({ history }) => {
 									></Form.Control>
 								</Form.Group>
 								<br />
+
 								<Form.Group controlId='confirmPassword'>
 									<Form.Label>Confirm Password</Form.Label>
 									<Form.Control

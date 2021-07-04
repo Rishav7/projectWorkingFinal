@@ -24,7 +24,7 @@ import {
 	USER_UPDATE_PIC_FAIL,
 	USER_UPDATE_PIC_SUCCESS,
 	USER_UPDATE_PIC_REQUEST,
-	USER_UPDATE_PIC_RESET
+	USER_UPDATE_PIC_RESET,
 } from '../constants/userConstants'
 
 export const userLoginReducer = (state = {}, action) => {
@@ -148,7 +148,6 @@ export const uploadProfilePicReducer = (state = {}, action) => {
 			return state
 	}
 }
-
 
 export const forgotPasswordReducer = (state = {}, action) => {
 	switch (action.type) {
