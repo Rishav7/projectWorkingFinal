@@ -7,6 +7,7 @@ import Footers from './components/Footers'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import ProfileScreen from './screens/ProfileScreen'
+import OrderScreen from './screens/OrderScreen'
 
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen'
 import NewPasswordScreen from './screens/NewPasswordScreen'
@@ -21,6 +22,7 @@ const App = () => {
 				<Container>
 					<Route path='/login' component={LoginScreen}></Route>
 					<Route path='/register' component={RegisterScreen}></Route>
+					<Route path='/myorders' component={OrderScreen}></Route>
 					<Route path='/profile' component={ProfileScreen} />
 					<Route
 						path='/forgotPassword'

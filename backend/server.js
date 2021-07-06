@@ -12,6 +12,10 @@ const connectDB = require('./config/db.js')
 
 // import userRoutes from './routes/userRoutes.js'
 const userRoutes = require('./routes/userRoutes.js')
+
+// import orderRoutes from './routes/orderRoutes.js'
+const orderRoutes = require('./routes/orderRoutes.js')
+
 // import fileupload from 'express-fileupload'
 const fileupload = require('express-fileupload')
 //import middleware 
@@ -31,6 +35,7 @@ app.use(fileupload())
 app.use('/dp', express.static('backend/public/uploads'))
 
 app.use('/api/users', userRoutes)
+app.use('/api/orders', orderRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
