@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Form, Button, Row, Col } from 'react-bootstrap'
+import { CardDeck, Card, Button, Row, Col } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -16,6 +16,8 @@ const WishlistScreen = ({ }) => {
     useEffect(() => {
         dispatch(listMyWishlist())
     }, [dispatch])
+
+
     return (
 
         <>
@@ -26,27 +28,37 @@ const WishlistScreen = ({ }) => {
                         <Loader />
                     ) : errorWishlist ? (
                         <Message variant='danger'>{errorWishlist}</Message>
-                    ) : (
-                        <Table striped bordered hover responsive className='table-sm'>
-                            <thead>
-                                <tr>
-                                    <th>WISHLIST BOOK Title</th>
-                                    <th>WISHLIST BOOK Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {wishlists.map((wishlist) => (
-                                    <tr key={wishlist[0]._id}>
-                                        <td>
-                                            {wishlist[0].title}
-                                        </td>
-                                        <td>
-                                            {wishlist[0].price}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </Table>
+                    ) : (                        
+                        <CardDeck>
+                            {wishlists.map((wishlist) => (
+                                <>
+                                <Card className="cardContainer">
+                                    <Row>
+                                        <Col md={4}>
+                                            <Card.Img className="cardsImage" variant="top" src={wishlist[0].image} width="200px" height="300px"/>
+                                        </Col>
+                                        <Col md={8}>
+                                            <Card.Body>
+                                                <Card.Text>
+                                                    <h1 className="cardsHeading">Title : {wishlist[0].title}</h1>
+                                                    <h5 className="cardsText">Category : {wishlist[0].category}</h5>
+                                                    <h5 className="cardsText">Price : {wishlist[0].price}</h5>
+                                                </Card.Text>
+                                            </Card.Body>
+                                                <div>
+                                                    <button class="btn btn-light">
+                                                        <i className="text-primary ">Add to Cart</i>
+                                                    </button>
+                                                    <button class="btn btn-light">
+                                                        <i className="text-danger ">Remove from wishlist</i>
+                                                    </button>
+                                                </div>
+                                        </Col>
+                                    </Row>
+                                </Card><br/>
+                                </>
+                            ))}
+                        </CardDeck>
                     )}
                 </Col>
             </Row>

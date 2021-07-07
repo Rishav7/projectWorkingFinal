@@ -10,7 +10,7 @@ const getMyWishlist = asyncHandler(async (req, res) => {
   for(i in books){
     bookarray[i]=await Books.find({_id:books[i]}) 
   }
-  //console.log(bookarray[0][0])
+  //console.log(bookarray)
   res.json(bookarray)
 });
 

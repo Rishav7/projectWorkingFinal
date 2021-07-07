@@ -23,6 +23,7 @@ export const listMyWishlist = () => async (dispatch, getState) => {
       }
   
       const { data } = await axios.get(`/api/wishlist/mywishlist`, config)
+      //console.log("actions data",data)
       dispatch({
         type: WISH_LIST_MY_SUCCESS,
         payload: data,
