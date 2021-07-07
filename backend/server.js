@@ -16,6 +16,9 @@ const userRoutes = require('./routes/userRoutes.js')
 // import orderRoutes from './routes/orderRoutes.js'
 const orderRoutes = require('./routes/orderRoutes.js')
 
+// import wishlistRoutes from './routes/wishlistRoutes.js'
+const wishlistRoutes = require('./routes/wishlistRoutes.js')
+
 // import fileupload from 'express-fileupload'
 const fileupload = require('express-fileupload')
 //import middleware 
@@ -36,6 +39,7 @@ app.use('/dp', express.static('backend/public/uploads'))
 
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/wishlist', wishlistRoutes)
 
 app.use(notFound)
 app.use(errorHandler)

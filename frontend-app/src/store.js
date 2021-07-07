@@ -6,6 +6,8 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { userLoginReducer , userRegisterReducer ,userDetailsReducer,userUpdateProfileReducer,forgotPasswordReducer,uploadProfilePicReducer } from './reducers/userReducers'
 import { orderListMyReducer } from './reducers/orderReducers'
+import { wishlistListMyReducer } from './reducers/wishlistReducers'
+
 const reducer = combineReducers({
   
   userLogin: userLoginReducer,
@@ -14,7 +16,8 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   forgotPassword: forgotPasswordReducer,
   userUpdateProfilePic: uploadProfilePicReducer,
-  orderListMy: orderListMyReducer
+  orderListMy: orderListMyReducer,
+  wishlistListMy:wishlistListMyReducer,
 })
 
 

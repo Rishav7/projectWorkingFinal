@@ -8,11 +8,14 @@ import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import OrderScreen from './screens/OrderScreen'
+import WishlistScreen from './screens/WishlistScreen'
 
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen'
 import NewPasswordScreen from './screens/NewPasswordScreen'
 import PasswordSuccessScreen from './screens/PasswordSuccessScreen'
 import SentScreen from './screens/SentScreen'
+
+
 const App = () => {
 	return (
 		//ekfdkls
@@ -23,6 +26,7 @@ const App = () => {
 					<Route path='/login' component={LoginScreen}></Route>
 					<Route path='/register' component={RegisterScreen}></Route>
 					<Route path='/myorders' component={OrderScreen}></Route>
+					<Route path='/mywishlist' component={WishlistScreen}></Route>
 					<Route path='/profile' component={ProfileScreen} />
 					<Route
 						path='/forgotPassword'
